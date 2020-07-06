@@ -1,0 +1,25 @@
+1. @SpringBootApplication
+是一个组合注解，包括3个注解。标注它之后就会触发自动配置（@EnableAutoConfiguration）和组件扫描（@ComponentScan）。
+
+2.@ComponentScan
+可以指定包扫描的根路径，让 SpringFramework 来扫描指定包及子包下的组件，也可以不指定路径，默认扫描当前配置类所在包及子包里的所有组件
+**（其实这就解释了为什么 SpringBoot 的启动类要放到所有类所在包的最外层）**
+
+3.@EnableAutoConfiguration
+SpringBoot的自动配置完全由 @EnableAutoConfiguration 开启。
+    @AutoConfigurationPackage 表示包含该注解的类所在的包应该在 AutoConfigurationPackages 中注册。
+    即：主启动类必须放在所有自定义组件的包的最外层，以保证Spring能扫描到它们。由此可知是它起的作用。
+    实现原理：它的实现原理是在注解上标注了 @Import，导入了一个 AutoConfigurationPackages.Registrar 。
+
+    @Import(AutoConfigurationImportSelector.class) 它导入了一个 ImportSelector，来向容器中导入组件。
+    导入的组件是：AutoConfigurationImportSelector，继承DeferredImportSelector。
+    DeferredImportSelector的执行时机，是在 @Configuration 注解中的其他逻辑被处理完毕之后（包括对 @ImportResource、@Bean 这些注解的处理）再执行，
+    换句话说，DeferredImportSelector 的执行时机比 ImportSelector 更晚。
+    实现原理：使用SPI机制自动加载配置类，使用 classLoader 去加载在 spring-boot-autoconfiguration 包下META-INF/spring.factories资源文件，
+    并以 Properties 的形式加载，并取出org.springframework.boot.autoconfigure.EnableAutoConfiguration 指定的所有自动配置类（是一个很大的字符串，里面都是自动配置类的全限定类名），
+    装配到IOC容器中，之后自动配置类就会通过 ImportSelector 和 @Import 的机制被创建出来，之后就生效了。
+
+4.规律总结：
+从上面的 Properties 中发现，所有配置的 EnableAutoConfiguration 的自动配置类，都以 AutoConfiguration 结尾！
+由此规律，以后我们要了解一个 SpringBoot 的模块或者第三方集成的模块时，就可以大胆猜测基本上一定会有 XXXAutoConfiguration 类出现！
+
