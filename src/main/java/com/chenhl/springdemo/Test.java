@@ -15,15 +15,7 @@ public class Test {
 
     public static void main(String[] args) {
         // 容器实例化
-//        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(Appconfig.class);
-//        System.out.println(applicationContext.getBean(X.class));
-
-        BigDecimal num ;
-        //num赋值0.521的35次幂
-        num=new BigDecimal(Math.pow(0.521, 35));
-        System.out.println(num);//输出num本身
-        System.out.println(num.toPlainString());//输出toPlainString后的数值
-        System.out.println(num.toString());//输出toString后的数值
-
+        AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(Appconfig.class);
+        System.out.println(applicationContext.getBean(X.class));
     }
 }
