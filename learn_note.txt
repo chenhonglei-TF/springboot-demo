@@ -23,3 +23,6 @@ SpringBoot的自动配置完全由 @EnableAutoConfiguration 开启。
 从上面的 Properties 中发现，所有配置的 EnableAutoConfiguration 的自动配置类，都以 AutoConfiguration 结尾！
 由此规律，以后我们要了解一个 SpringBoot 的模块或者第三方集成的模块时，就可以大胆猜测基本上一定会有 XXXAutoConfiguration 类出现！
 
+
+
+

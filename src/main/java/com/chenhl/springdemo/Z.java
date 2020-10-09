@@ -13,8 +13,9 @@ import javax.annotation.PostConstruct;
  * @创建时间: 2020/7/3
  * @描述:
  */
-@Component
+//@Component
 public class Z implements ApplicationContextAware {
+
     @Autowired
     X x;//注入X
 
@@ -26,12 +27,12 @@ public class Z implements ApplicationContextAware {
     //生命周期初始化回调方法
     @PostConstruct
     public void zinit(){
-        System.out.println("call z lifecycle init callback");
+        System.out.println("Z @PostConstruct lifecycle init callback");
     }
 
     //ApplicationContextAware 回调方法
     @Override
     public void setApplicationContext(ApplicationContext applicationContext) throws BeansException {
-        System.out.println("call aware callback");
+        System.out.println("Z ApplicationContextAware.setApplicationContext aware callback");
     }
 }

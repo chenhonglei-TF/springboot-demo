@@ -1,10 +1,10 @@
 package com.chenhl.springdemo;
 
+import com.chenhl.conditions.Person;
 import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 
-import java.math.BigDecimal;
-
-import static java.math.BigDecimal.ROUND_HALF_UP;
+import java.util.Map;
+import java.util.stream.Stream;
 
 /**
  * @创建人: chenhl
@@ -16,6 +16,10 @@ public class Test {
     public static void main(String[] args) {
         // 容器实例化
         AnnotationConfigApplicationContext applicationContext = new AnnotationConfigApplicationContext(Appconfig.class);
-        System.out.println(applicationContext.getBean(X.class));
+        String[] beanDefinitionNames = applicationContext.getBeanDefinitionNames();
+        System.out.println("11111111");
+        Stream.of(beanDefinitionNames).forEach(System.out::println);
+        System.out.println("22222222");
+//        System.out.println(applicationContext.getBean(Z.class));
     }
 }

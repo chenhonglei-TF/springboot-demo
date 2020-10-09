@@ -6,4 +6,8 @@ package com.chenhl.springbootdemo.domain.color;
  * @描述:
  */
 public class Red {
+
+    public Red() {
+        System.out.println("Red contructor invoked");
+    }
 }

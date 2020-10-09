@@ -16,4 +16,8 @@ public class CatConfigurationDemo {
     public Cat cat(){
         return new Cat("cat");
     }
+
+    public CatConfigurationDemo() {
+        System.out.println("CatConfigurationDemo constractor invoked!");
+    }
 }

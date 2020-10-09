@@ -30,4 +30,8 @@ public class CatBeanPostProcessor implements BeanPostProcessor {
         }
         return bean;
     }
+
+    public CatBeanPostProcessor() {
+        System.out.println("CatBeanPostProcessor construct");
+    }
 }

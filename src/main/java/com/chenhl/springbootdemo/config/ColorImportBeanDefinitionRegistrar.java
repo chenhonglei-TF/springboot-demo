@@ -18,4 +18,8 @@ public class ColorImportBeanDefinitionRegistrar implements ImportBeanDefinitionR
     public void registerBeanDefinitions(AnnotationMetadata importingClassMetadata, BeanDefinitionRegistry registry) {
         registry.registerBeanDefinition("black", new RootBeanDefinition(Black.class));
     }
+
+    public ColorImportBeanDefinitionRegistrar() {
+        System.out.println("ColorImportBeanDefinitionRegistrar constractor invoked!");
+    }
 }

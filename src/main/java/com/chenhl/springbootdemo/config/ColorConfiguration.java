@@ -15,9 +15,7 @@ import java.util.stream.Stream;
 @Configuration
 public class ColorConfiguration {
 
-    public static void main(String[] args) throws Exception {
-        AnnotationConfigApplicationContext ctx = new AnnotationConfigApplicationContext(ColorConfiguration.class);
-        String[] beanDefinitionNames = ctx.getBeanDefinitionNames();
-        Stream.of(beanDefinitionNames).forEach(System.out::println);
+    public ColorConfiguration() {
+        System.out.println("ColorConfiguration constractor invoked!");
     }
 }

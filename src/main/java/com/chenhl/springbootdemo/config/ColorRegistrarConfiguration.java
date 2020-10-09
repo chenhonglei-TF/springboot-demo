@@ -16,4 +16,8 @@ public class ColorRegistrarConfiguration {
     public Yellow yellow(){
         return new Yellow();
     }
+
+    public ColorRegistrarConfiguration() {
+        System.out.println("ColorRegistrarConfiguration constractor invoked!");
+    }
 }

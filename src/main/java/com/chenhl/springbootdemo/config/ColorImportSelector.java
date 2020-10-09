@@ -16,4 +16,8 @@ public class ColorImportSelector implements ImportSelector {
     public String[] selectImports(AnnotationMetadata importingClassMetadata) {
         return new String[]{Blue.class.getName(), Green.class.getName()};
     }
+
+    public ColorImportSelector() {
+        System.out.println("ColorImportSelector constractor invoked!");
+    }
 }

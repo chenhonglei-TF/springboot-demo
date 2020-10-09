@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.chenhl.springbootdemo.mapper.RouteConfAppMapper">
+
+    <sql id="Base_Column_List">
+    id, app_name, app_code, system_code, system_type, memo, create_operator_id, modify_operator_id,
+    gmt_create, gmt_modified, is_deleted, update_version
+    </sql>
+
+
+    <select id="selectList" parameterType="string" resultType="com.chenhl.springbootdemo.entity.RouteConfAppDO">
+        SELECT
+        <include refid="Base_Column_List"/>
+        FROM oms_route_conf_app
+        <where>
+            is_deleted=0
+            <if test="appCode != null">
+                AND app_code=#{appCode}
+            </if>
+        </where>
+    </select>
+
+    <insert id="insert" parameterType="com.chenhl.springbootdemo.entity.RouteConfAppDO"
+            keyProperty="id" useGeneratedKeys="true">
+        insert oms_route_conf_app (app_name, app_code, system_code, system_type, memo, create_operator_id, modify_operator_id,
+    gmt_create, gmt_modified, is_deleted, update_version)
+    value (#{appName}, #{appCode}, #{systemCode}, #{systemType}, #{memo},
+    #{createOperatorId},#{modifyOperatorId}, now(), now(),1, 1
+    )
+    </insert>
+
+
+</mapper>
